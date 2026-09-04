@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACQUA - Premium Purified Ice Cubes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&family=Cinzel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root {
+            --primary-blue: #34b3e4;
+            --light-blue: #e0f4ff;
+            --dark-blue: #0c2d48;
+            --text-grey: #666;
+            --bg-light: #f9fbfc;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--dark-blue);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            color: var(--primary-blue);
+            letter-spacing: clamp(6px, 2vw, 12px);
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: clamp(15px, 3vw, 30px);
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        @media (min-width: 992px) {
+            .nav-links {
+                display: flex;
+                gap: 25px;
+            }
+            .nav-links a {
+                text-decoration: none;
+                color: var(--text-grey);
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: color 0.3s;
+            }
+            .nav-links a:hover {
+                color: var(--primary-blue);
+            }
+        }
+
+        .cart-bag {
+            position: relative;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--dark-blue);
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 5px;
+        }
+
+        .cart-bag:hover { color: var(--primary-blue); }
+
+        .bag-count {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: var(--primary-blue);
+            color: white;
+            font-size: 0.65rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #ffffff 0%, #eef9ff 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title-bg {
+            position: absolute;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(4rem, 20vw, 18rem);
+            color: var(--primary-blue);
+            opacity: 0.05;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
+
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+            letter-spacing: clamp(4px, 1.5vw, 8px);
+            color: var(--text-grey);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            max-width: 500px;
+            margin: 0 auto 35px auto;
+            color: var(--text-grey);
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+            line-height: 1.7;
+            padding: 0 10px;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 14px 35px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-solid {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(52, 179, 228, 0.3);
+        }
+        .btn-solid:hover { 
+            background: #239ccb; 
+            box-shadow: 0 6px 20px rgba(52, 179, 228, 0.4); 
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+            background: transparent;
+        }
+        .btn-outline:hover { 
+            background: var(--light-blue); 
+            transform: translateY(-2px);
+        }
+
+        .section-padding { padding: clamp(60px, 8vw, 100px) 5%; text-align: center; }
+        .section-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(1.8rem, 5vw, 2.5rem); 
+            margin: 15px 0; 
+        }
+        
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 340px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .pricing-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .pricing-card h3 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; }
+        .price { font-size: 2.5rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 30px; }
+        .price span { font-size: 1rem; color: var(--text-grey); font-weight: 400; }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--primary-blue);
+            border-radius: 8px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 15px;
+            transition: background 0.3s ease;
+        }
+        .whatsapp-btn:hover { background: var(--light-blue); }
+
+        #cart-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: clamp(25px, 5vw, 40px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        #cart-modal.active { right: 0; }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--light-blue);
+            padding-bottom: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-total-box {
+            margin-top: auto;
+            background: var(--light-blue);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: none;
+            z-index: 1500;
+            backdrop-filter: blur(4px);
+        }
+        .overlay.active { display: block; }
+
+        /* Custom In-App Modal Dialog */
+        #custom-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: var(--white);
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            z-index: 3000;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #custom-modal.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        #custom-modal-text {
+            color: var(--dark-blue);
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            text-align: left;
+            margin-top: 30px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-info-block {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .contact-form-block {
+            flex: 1.2;
+            min-width: 280px;
+            width: 100%;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        footer {
+            padding: 60px 5% 40px;
+            text-align: center;
+            background: var(--white);
+            border-top: 1px solid #edf2f7;
+        }
+
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: var(--primary-blue);
+            letter-spacing: clamp(8px, 2vw, 15px);
+            margin-bottom: 25px;
+        }
+
+        .footer-copyright {
+            color: var(--text-grey);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-grey);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        /* Responsive adjustments for mobile layout optimization */
+        @media (max-width: 768px) {
+            .hero-btns {
+                flex-direction: column;
+            }
+            .hero-btns .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            .contact-container {
+                text-align: center;
+                flex-direction: column;
+                align-items: center;
+            }
+            .pricing-card {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">ACQUA</a>
+        <div class="nav-right">
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#products">Products</a>
+                <a href="#contact-section">Contact</a>
+            </nav>
+            <button class="cart-bag" onclick="toggleCart()" aria-label="Shopping Bag">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <div class="bag-count" id="bag-count">0</div>
+            </button>
+        </div>
+    </header>
+
+    <div class="overlay" id="overlay" onclick="closeAllModals()"></div>
+
+    <!-- Custom In-App Modal Box -->
+    <div id="custom-modal">
+        <p id="custom-modal-text">Message goes here.</p>
+        <button onclick="closeModal()" class="btn btn-solid" style="width: 100%;">Got it</button>
+    </div>
+
+    <!-- Slide-in Cart Modal -->
+    <div id="cart-modal">
+        <div class="cart-header">
+            <h2 style="font-family: 'Playfair Display', serif;">Your Bag</h2>
+            <button onclick="toggleCart()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color: var(--dark-blue);" aria-label="Close Cart">&times;</button>
+        </div>
+        <div id="cart-items-list" style="overflow-y:auto; flex-grow:1; padding-right: 5px;">
+            <p style="text-align:center; color:var(--text-grey); margin-top:50px;">Your bag is currently empty.</p>
+        </div>
+        <div class="cart-total-box">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                <strong>Estimated Total:</strong>
+                <strong id="cart-total-price">R0</strong>
+            </div>
+            <button class="btn btn-solid" style="width:100%;" onclick="checkout()">Checkout & Pay</button>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-title-bg">ACQUA</div>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1>PURIFIED ICE CUBES</h1>
+            <p>Experience crystalline purity in every cube. Premium ice crafted through advanced purification for the discerning palate.</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn btn-solid">Discover More</a>
+                <a href="#contact-section" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section-padding">
+        <div data-aos="fade-up">
+            <span style="color:var(--primary-blue); font-size:1.5rem;"><i class="fa-solid fa-snowflake"></i></span>
+            <h2 class="section-title">Premium Ice Packages</h2>
+        </div>
+
+        <div class="card-container">
+            <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Essential</h3>
+                <div class="price">R10 <span>/ 1.5 kg</span></div>
+                <a href="javascript:void(0)" class="whatsapp-btn" onclick="directQuote('Essential')">
+                    <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+                </a>
+                <button class="btn btn-solid" style="width:100%; font-size:0.85rem;" onclick="addToBag('Essential', 10)">Add to Bag</button>
+            </div>
+            
+            <div class="pricing-card" data-aos="fade-up" data-aos-delay="200" style="border: 2px solid var(--primary-blue);">
+                <div style="background:var(--primary-blue); color:white; padding:4px 12px; font-size:0.7rem; border-radius:20px; width:fit-content; margin:-55px auto 30px; font-weight: 600;">Most Popular</div>
+                <h3>Classic</h3>
+                <div class="price">R15 <span>/ 2 kg</span></div>
+                <a href="javascript:void(0)" class="whatsapp-btn" onclick="directQuote('Classic')">
+                    <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+                </a>
+                <button class="btn btn-solid" style="width:100%; font-size:0.85rem;" onclick="addToBag('Classic', 15)">Add to Bag</button>
+            </div>
+            
+            <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+                <h3>Premium</h3>
+                <div class="price">R30 <span>/ 3 kg</span></div>
+                <a href="javascript:void(0)" class="whatsapp-btn" onclick="directQuote('Premium')">
+                    <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+                </a>
+                <button class="btn btn-solid" style="width:100%; font-size:0.85rem;" onclick="addToBag('Premium', 30)">Add to Bag</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-section" class="section-padding" style="background: white;">
+        <div data-aos="fade-up">
+            <h2 class="section-title" style="color: var(--primary-blue);">Get In Touch</h2>
+            <p style="color:var(--text-grey); max-width:600px; margin: 10px auto 30px; padding: 0 10px;">Ready to elevate your beverages with premium ice? We'd love to hear from you.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info-block" data-aos="fade-right">
+                <h3 style="font-family: 'Playfair Display', serif; margin-bottom:20px; font-size: 1.5rem;">Contact Information</h3>
+                <div style="margin-bottom:20px;">
+                    <strong style="font-size:0.7rem; color:var(--text-grey); letter-spacing: 1px;">EMAIL</strong><br>
+                    <span>Acquapremiumice@outlook.com</span>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <strong style="font-size:0.7rem; color:var(--text-grey); letter-spacing: 1px;">PHONE</strong><br>
+                    <span>078 186 8946</span>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <strong style="font-size:0.7rem; color:var(--text-grey); letter-spacing: 1px;">LOCATION</strong><br>
+                    <span>Bloemfontein, Free State</span>
+                </div>
+            </div>
+            
+            <div class="contact-form-block" data-aos="fade-left">
+                <input type="text" class="form-control" placeholder="Your name">
+                <input type="email" class="form-control" placeholder="your@email.com">
+                <textarea class="form-control" placeholder="Tell us about your needs..." rows="4"></textarea>
+                <button class="btn btn-solid" style="width:100%;" onclick="showModal('Thank you for reaching out! We will contact you shortly.')">Send Message <i class="fa-solid fa-paper-plane" style="margin-left:8px;"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo" data-aos="fade-up">ACQUA</div>
+        <p class="footer-copyright">© 2026 ACQUA. Premium Purified Ice Cubes. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({ once: true, offset: 60 });
+
+        let bag = [];
+        const bizPhone = "27781868946";
+        const bankingInfo = `
+BANKING DETAILS:
+Bank: [Your Bank Name]
+Account Holder: ACQUA PREMIUM ICE
+Account Number: [Your Account Number]
+Branch Code: [Your Branch Code]
+Ref: Your Name / Ice`;
+
+        // Custom Modal UI replacing alert()
+        function showModal(text) {
+            document.getElementById('custom-modal-text').innerText = text;
+            document.getElementById('custom-modal').classList.add('show');
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('overlay').style.zIndex = "2500";
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').classList.remove('show');
+            if (!document.getElementById('cart-modal').classList.contains('active')) {
+                document.getElementById('overlay').classList.remove('active');
+            }
+            document.getElementById('overlay').style.zIndex = "1500";
+        }
+
+        function closeAllModals() {
+            document.getElementById('cart-modal').classList.remove('active');
+            closeModal();
+        }
+
+        function toggleCart() {
+            if (document.getElementById('custom-modal').classList.contains('show')) {
+                closeModal();
+                return;
+            }
+            const isCartActive = document.getElementById('cart-modal').classList.toggle('active');
+            if (isCartActive) {
+                document.getElementById('overlay').classList.add('active');
+                document.getElementById('overlay').style.zIndex = "1500";
+            } else {
+                document.getElementById('overlay').classList.remove('active');
+            }
+        }
+
+        function addToBag(name, price) {
+            const item = bag.find(i => i.name === name);
+            if (item) { 
+                item.qty++; 
+            } else { 
+                bag.push({ name, price, qty: 1 }); 
+            }
+            updateBagUI();
+            
+            if (!document.getElementById('cart-modal').classList.contains('active')) {
+                toggleCart();
+            }
+        }
+
+        function updateBagUI() {
+            const list = document.getElementById('cart-items-list');
+            const count = document.getElementById('bag-count');
+            const totalDisplay = document.getElementById('cart-total-price');
+            
+            list.innerHTML = '';
+            let total = 0;
+            let totalQty = 0;
+
+            bag.forEach((item, index) => {
+                total += (item.price * item.qty);
+                totalQty += item.qty;
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <strong style="color: var(--dark-blue); font-size: 0.95rem;">${item.name}</strong><br>
+                            <small style="color: var(--text-grey);">R${item.price} x ${item.qty}</small>
+                        </div>
+                        <button onclick="removeFromBag(${index})" aria-label="Remove item" style="color:#e53e3e; background:none; border:none; cursor:pointer; font-weight: 600; font-size: 0.85rem; padding: 5px;">Remove</button>
+                    </div>
+                `;
+            });
+
+            if (bag.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:var(--text-grey); margin-top:50px;">Your bag is currently empty.</p>';
+            }
+            
+            count.innerText = totalQty;
+            totalDisplay.innerText = `R${total}`;
+        }
+
+        function removeFromBag(index) {
+            bag.splice(index, 1);
+            updateBagUI();
+        }
+
+        function directQuote(pkg) {
+            const msg = encodeURIComponent(`Hi ACQUA, I would like to request a quotation for the ${pkg} package.`);
+            window.open(`https://wa.me/${bizPhone}?text=${msg}`, '_blank');
+        }
+
+        function checkout() {
+            if (bag.length === 0) {
+                return showModal("Your bag is currently empty. Please add items before checking out.");
+            }
+
+            let orderText = "ACQUA ORDER SUMMARY:\n\n";
+            let total = 0;
+            bag.forEach(item => {
+                orderText += `- ${item.name} (x${item.qty}): R${item.price * item.qty}\n`;
+                total += (item.price * item.qty);
+            });
+            orderText += `\nTOTAL: R${total}\n${bankingInfo}`;
+
+            window.open(`https://wa.me/${bizPhone}?text=${encodeURIComponent(orderText)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
